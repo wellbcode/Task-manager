@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#007bff">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/pic/target.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="assets/pic/target.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"> 
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" rel="stylesheet" >
+    <link rel="manifest" href="manifest.json">
+    <title>Ger. de Tarefas</title>
+</head>
+<body class="dark-mode">
+  <!--Botão dark-mode-->
+  <button id="toggleDarkMode" class="btn btn-dark mb-3">
+    <i id="iconDarkMode" class="bi bi-moon-fill" style="color:#FFD700;"></i> Alternar Tema
+  </button>
+  
+  <!--Ícone de login e cadastro-->
+  <div class="container py-5 text-center">
+    <button class="btn btn-outline-light btn-lg mb-4" onclick="alternarFormulario()">
+      <i class="bi bi-person-circle me-2"></i> Entrar ou Cadastrar
+    </button>
+  
+    <!-- Formulário de login e cadastro -->
+    <div id="formularioLoginCadastro" class="row justify-content-center" style="display: none;">
+      <div class="col-md-6">
+        <div class="card bg-dark text-white border-light shadow-lg">
+          <div class="card-body">
+  
+            <!-- Seção Login -->
+            <div class="form-section mb-4 p-3 border rounded">
+              <h5 class="text-center mb-3">Login</h5>
+              <input type="text" id="loginUsuario" class="form-control mb-2" placeholder="Nome de usuário">
+  
+              <div class="mb-3">
+                <label for="loginPin" class="form-label">PIN</label>
+                <div class="input-group">
+                  <input type="password" id="loginPin" class="form-control" placeholder="Digite seu PIN">
+                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('loginPin', this)">
+                    <i class="bi bi-lock-fill"></i>
+                  </button>
+                </div>
+              </div>
+  
+              <button onclick="loginUsuario()" class="btn btn-success w-100">Entrar</button>
+            </div>
+  
+            <!-- Seção Cadastro -->
+            <div class="form-section p-3 border rounded">
+              <h5 class="text-center mb-3">Cadastro</h5>
+              <input type="text" id="cadastroNome" class="form-control mb-2" placeholder="Nome completo">
+              <input type="text" id="cadastroUsuario" class="form-control mb-2" placeholder="Nome de usuário">
+  
+              <div class="mb-3">
+                <label for="cadastroPin" class="form-label">PIN</label>
+                <div class="input-group">
+                  <input type="password" id="cadastroPin" class="form-control" placeholder="Crie um PIN">
+                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('cadastroPin', this)">
+                    <i class="bi bi-lock-fill"></i>
+                  </button>
+                      <!-- Barra de força -->
+                  <div class="barra-container">
+                    <div id="barraForcaPinCadastro" class="barra"></div>
+                  </div>
+                </div>
+
+              <div>
+                <div id="textoForcaPinCadastro" class="mt-2 fw-bold text-center"></div>
+              </div>
+
+                <div id="avisoPinCadastro" class="mt-2 fw-bold"></div>
+                <div id="avisoPinRepetidoCadastro" class="mt-2 fw-bold" style="color:red;"></div>
+              </div>
+  
+              <div class="mb-3">
+                <select id="cadastroGenero" class="form-select">
+                  <option value="masculino">Masculino</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+  
+              <input type="file" id="cadastroFoto" class="form-control mb-3" accept="image/*">
+  
+              <!-- Cropper -->
+              <div id="cropContainerCadastro" style="display:none; text-align:center; margin-top:10px; max-width:300px; margin:auto">
+                <img id="imagePreviewCadastro" style="max-width:100%; max-height:300px; border-radius:8px;" />
+                <button id="cropButtonCadastro" class="btn btn-primary mt-2 w-100">Recortar e Salvar</button>
+              </div>
+  
+              <button onclick="cadastrarUsuario()" class="btn btn-primary w-100 mt-3">Cadastrar</button>
+            </div>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Área de login/cadastro aqui em cima -->
+  <div id="conteudoPrincipal" style="display:none;"></div>
+  
+  <!-- Formulário de atualizar -->
+  <div class="usuario-header text-center">
+    <img src="assets/pic/default.jpg" alt="" class="foto-usuario">
+    <p id="mensagemUsuario" class="lead fw-light text-white mb-3"></p>
+   
+     <!-- Botão de atualizar o perfil -->
+    <button onclick="abrirAtualizacaoPerfil()" class="btn btn-outline-warning mb-2"> 
+    <i class="bi bi-pencil-square me-1"></i> Atualizar Perfil
+    </button>
+ 
+   <!-- Formulário de atualização -->
+   <div id="formAtualizarPerfil" style="display: none;" class="mt-3">
+    <input type="text" id="novoNomeCompleto" class="form-control mb-2" placeholder="Novo nome completo">
+    <input type="text" id="novoNomeUsuario" class="form-control mb-2" placeholder="Novo nome de usuário">
+    
+    <!-- Novo campo Gênero -->
+    <div class="mb-3">
+      <label for="novoGenero" class="form-label"></label>
+      <select id="novoGenero" class="form-select">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+        <option value="outro">Outro</option>
+      </select>
+    </div>
+
+      <!-- campo de nova senha -->
+    <div class="input-group mb-2">
+      <input type="password" id="novoPin" class="form-control" placeholder="Digite seu PIN">
+      <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('novoPin', this)">
+        <i class="bi bi-lock-fill"></i>
+      </button>
+    </div>
+
+    <!-- Barra de força Atualizar perfil -->
+      <div class="barra-container">
+        <div id="barraForcaPinAtualizar" class="barra"></div> 
+      </div> 
+      <div>
+        <div id="textoForcaPinAtualizar" class="mt-2 fw-bold text-center"></div>
+      </div> 
+      <div id="avisoPinRepetidoAtualizar" class="mt-2 fw-bold" style="color:red;"></div>
+
+
+    <!-- Seleciona a nova foto e carrega -->
+    <input type="file" id="novaFoto" class="form-control" accept="image/*,application/pdf">
+    
+    <div id="cropContainerAtualizar" style="display:none; text-align:center; margin-top:10px;">
+      <img id="imagePreviewAtualizar" style="max-width:100%; border-radius:8px;" />
+      <button id="cropButtonAtualizar" class="btn btn-primary mt-2">Recortar e Salvar</button>
+    </div>
+
+    <!-- <div id="cropContainer" style="display:none; text-align:center; margin-top:10px;">
+      <img id="imagePreview" style="max-width:100%; border-radius:8px;" />
+      <button id="cropButton" class="btn btn-primary mt-2">Recortar e Salvar</button>
+    </div> -->
+
+    <!-- Foto do perfil -->
+    <!-- <img id="fotoPerfil" src="" alt="Foto do perfil" style="width:120px; height:120px; border-radius:50%; margin-top:10px;"> -->
+
+  <div class="text-center mt-3">
+    <button onclick="atualizarPerfil()" class="btn btn-warning">Salvar Alterações</button>
+  </div>
+  </div>
+  </div>
+ 
+  <!-- Botão de logout -->
+  <button onclick="logoutUsuario()" class="btn btn-outline-light">
+    <i class="bi bi-box-arrow-right me-1"></i> Sair
+  </button>
+   
+  <div class="botoes-usuario">
+    <button class="btn btn-primary btn-lg me-2" onclick="alterarUsuario()">Alterar Perfil</button>
+    <button class="btn btn-danger btn-lg" onclick="limparTarefas()">Limpar Tarefas</button>
+  </div>
+ 
+  <!-- Formulário -->
+  <div class="card mb-4">
+    <div class="card-body">
+      <h5 class="card-title">Adicionar Nova Tarefa</h5>
+      <form id="formTarefa">
+        <div class="mb-3">
+          <input type="text" class="form-control" id="novaTarefa" placeholder="Digite sua tarefa..." required>
+        </div>
+        <div class="mb-3">
+          <select class="form-select" id="categoriaTarefa">
+            <option value="Trabalho">Trabalho</option>
+            <option value="Pessoal">Pessoal</option>
+            <option value="Estudos">Estudos</option>
+          </select>
+        </div>
+        <div class="mb-3">
+          <input type="date" class="form-control" id="vencimentoTarefa">
+        </div>
+      <div class="botoes-container">  
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-plus-circle me-1"></i> Adicionar Tarefa
+        </button>
+        <!--===Botão para exportar o PDF===-->
+        <button type="button" class="btn btn-secondary ms-2" onclick="exportarPDF()">
+          <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
+        </button>
+         <!--===Botão para exportar o EXCEL===-->
+        <button type="button" class="btn btn-success ms-2" onclick="exportarExcel()">
+          <i class="bi bi-file-earmark-excel"></i> Exportar Excel
+        </button>
+      </div>
+      </form>
+    </div>
+  </div>
+ 
+  <!-- Filtros e contador -->
+  <div class="filtros-container text-center mb-3">
+    <div class="botoes-filtros mb-2">
+      <button class="btn btn-outline-primary btn-sm filtro-btn" onclick="filtrarTarefas('todas', this)"><strong>Todas</strong></button>
+      <button class="btn btn-outline-danger btn-sm filtro-btn" onclick="filtrarTarefas('pendentes', this)"><strong>Pendentes</strong></button>
+      <button class="btn btn-outline-success btn-sm filtro-btn" onclick="filtrarTarefas('concluidas', this)"><strong>Concluídas</strong></button>
+    </div>
+    <div class="contadores">
+      <span class="badge bg-danger me-2" id="contadorPendentes">Pendentes: 0</span>
+      <span class="badge bg-success" id="contadorConcluidas">Concluídas: 0</span>
+      <span class="badge bg-primary" id="contadorTodas">Todas: 0</span>
+    </div>
+  </div>
+ 
+  <!-- Lista -->
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Minhas Tarefas</h5>
+      <ul id="listaTarefas" class="list-group list-group-flush"></ul>
+    </div>
+  </div>
+ 
+  <button onclick="mostrarPopupLembrete()" class="btn btn-info" >Ver Lembrete</button>
+
+  <!-- Sons -->
+<audio id="audioConcluida" src="assets/audios/success-1-6297.mp3"></audio>
+<audio id="audioPendente" src="assets/audios/wah-wah-sad-trombone-6347.mp3"></audio>
+<!-- Botão e toast 
+<button id="installAppBtn">⬇️ Baixar App</button>
+<div id="toastDownload">Download iniciado!</div>-->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+  <!-- <script>
+    Swal.fire('Alerta direto no navegador!');
+  </script> -->
+  <script src="assets/js/scripts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- Script de rodar offline -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('assets/js/service-worker.js')
+          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+          .catch(err => console.error('❌ Erro ao registrar Service Worker:', err));
+      });
+    }
+  </script>
+
+<!-- <script>
+document.addEventListener('DOMContentLoaded', () => {
+  const installBtn = document.getElementById('installAppBtn');
+  const toast = document.getElementById('toastDownload');
+
+  // Links do app
+  const links = {
+    android: 'assets/download/meuApp.apk',
+    ios: 'https://apps.apple.com/app/idXXXXXXXXX', // link da App Store
+    windows: 'assets/download/meuApp.exe',
+    mac: 'assets/download/meuApp.dmg',
+    linux: 'assets/download/meuApp.AppImage'
+  };
+
+  const ua = navigator.userAgent.toLowerCase();
+  let link = links.windows;
+  let filename = 'meuApp.exe';
+  let buttonText = '⬇️ Baixar App';
+
+  if (/android/.test(ua)) {
+    link = links.android;
+    filename = 'meuApp.apk';
+    buttonText = '⬇️ Baixar APK';
+  } else if (/iphone|ipad|ipod/.test(ua)) {
+    link = links.ios;
+    buttonText = '📱 Instalar no iOS';
+  } else if (/macintosh|mac os x/.test(ua)) {
+    link = links.mac;
+    filename = 'meuApp.dmg';
+    buttonText = '⬇️ Baixar para Mac';
+  } else if (/linux/.test(ua)) {
+    link = links.linux;
+    filename = 'meuApp.AppImage';
+    buttonText = '⬇️ Baixar para Linux';
+  } else if (/windows/.test(ua) || ua.indexOf('win') !== -1) {
+    link = links.windows;
+    filename = 'meuApp.exe';
+    buttonText = '⬇️ Baixar para Windows';
+  }
+
+  installBtn.textContent = buttonText;
+
+  installBtn.addEventListener('click', () => {
+    if (/iphone|ipad|ipod/.test(ua)) {
+      // iOS abre App Store
+      window.open(link, '_blank');
+      showToast('🔗 Abrindo App Store...');
+      return;
+    }
+
+    // Força download em outros sistemas
+    const a = document.createElement('a');
+    a.href = link;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    showToast('✅ Download iniciado!');
+    console.log(`Download iniciado: ${link}`);
+  });
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+
+  installBtn.style.display = 'flex';
+});
+</script> -->
+</body>
+</html>
+

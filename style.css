@@ -1,0 +1,519 @@
+@keyframes changeBackgroundImage {
+  0% {
+    background-image: url('https://picsum.photos/id/1015/1500/1000'), url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&//fit=crop&w=1350&q=80');
+  }
+  25% {
+    background-image: url('https://picsum.photos/id/1019/1500/1000'), url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+  }
+  50% {
+    background-image: url('https://picsum.photos/id/1016/1500/1000'), url('https://images.unsplash.com/photo-1551009175-8a68da93d5f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80');
+  }
+  75% {
+    background-image: url('https://picsum.photos/id/1000/1500/1000'), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80');
+  }
+  100% {
+    background-image: url('https://picsum.photos/id/1015/1500/1000'), url('https://images.unsplash.com/photo-1558979158-65a1eaa08691?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80');
+  }
+  125% {
+      background: url("https://images.unsplash.com/photo-1542397284385-6010376c5337?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  }
+}
+ 
+body {
+  margin: 20px;
+  padding: 20px 20px;
+  /* background-image: linear-gradient(to left, rgb(211, 198, 189), #fff); */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: changeBackgroundImage 20s infinite;
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh
+  }
+
+/* Dark Mode aplicado apenas ao fundo dos blocos */
+/* Classe para aplicar fundo escuro apenas nos cards */
+.dark-card {
+  background-color: #1e1e1e !important; /* fundo escuro */
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+/* MantÃ©m inputs, botÃµes e textos intactos 
+.dark-card * {
+  background-color: black !important;
+  color: #fff !important;
+}*/
+
+/* MantÃ©m inputs, botÃµes e textos internos intactos */
+.dark-card input,
+.dark-card select,
+.dark-card button,
+.dark-card label,
+.dark-card h5,
+.dark-card span {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+ 
+.card {
+  margin: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
+  background-image: linear-gradient(to left, rgb(17, 81, 141), #fff);
+}
+
+/*Barra de rolagem nos cartÃµes de login/cadastro e tarefas
+ .card-body {
+  max-height: 300px;  altura mÃ¡xima visÃ­vel 
+  overflow-y: auto;    ativa rolagem vertical 
+  padding-right: 10px;  espaÃ§o para nÃ£o colar na barra 
+} 
+
+/* Estilizar a barra de rolagem (opcional) 
+.card-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.card-body::-webkit-scrollbar-thumb {
+  background-color: #3085d6;  
+  border-radius: 4px;
+}
+
+.card-body::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+ */
+
+input.form-control {
+  border-left: 4px solid green;
+}
+
+
+.progress {
+  background-color: #e0e0e0;
+  border-radius: 6px;
+}
+.progress-bar {
+  width: 0%;
+  transition: width 0.3s ease;
+  border-radius: 6px;
+}
+
+#barraForcaPin {
+  width: 0%;
+  background-color: #f44336 ; /* Vermelho inicial */
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.barra-container {
+  width: 100%;
+  height: 10px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.barra {
+  height: 100%;
+  width: 0%;
+  border-radius: 6px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+
+/* Container do formulÃ¡rio de atualizaÃ§Ã£o */
+#formAtualizarPerfil {
+  display: none; /* MantÃ©m oculto atÃ© ser chamado */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
+  background-image: linear-gradient(to left, rgb(17, 81, 141), #fff);
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 10px; /* EspaÃ§amento interno */
+  max-width: 400px;
+  margin: 20px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+} 
+
+#formAtualizarPerfil .barra-container {
+  margin-top: -5px;
+}
+
+/* BotÃ£o Salvar AlteraÃ§Ãµes */
+#formAtualizarPerfil .btn-warning {
+  width: 100%;
+}
+
+
+select.form-select {
+  border-left: 4px solid green;
+}
+
+.btn{
+  cursor: pointer;
+}
+ 
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+ 
+  input {
+    display: block;
+    margin-bottom: 5px;
+    padding: 4px 6px;
+    width: 150px;
+  }
+
+button {
+  padding: 4px 8px;
+  margin-right: 5px;
+  font-size: 0.9em;
+}
+
+#msg { 
+  color: red; 
+  font-size: 0.8em;
+   margin-top: 2px;
+  }
+
+.foto-usuario {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: solid 2px #fff ;
+  cursor: pointer;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+ 
+.usuario-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+ 
+.usuario-header h4{
+  font-family: Arial, Helvetica, sans-serif;
+  /* color: #0e46c0; */
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  font-size: 30px;
+}
+
+#mensagemUsuario {
+  font-size: 2rem; /* maior destaque */
+  font-weight: bold;
+  color: #ffeb3b; /* amarelo vibrante */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* sombra para contraste */
+  text-align: center;
+  margin-top: 15px;
+  /*animation: pulse 2s infinite;  animaÃ§Ã£o suave */
+}
+
+.form-section {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+}
+
+/* Limita o tamanho do container do cropper */
+#cropContainerCadastro,
+#cropContainerAtualizar {
+  display: none;
+  text-align: center;
+  margin-top: 10px;
+  max-width: 300px; /* largura mÃ¡xima */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Limita a imagem dentro do cropper */
+#imagePreviewCadastro,
+#imagePreviewAtualizar {
+  max-width: 100%;
+  max-height: 300px; /* altura mÃ¡xima */
+  border-radius: 8px;
+}
+
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.botoes{
+  cursor: pointer;
+}
+ 
+.botoes-usuario {
+  margin-top: 10px;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+ 
+.botoes-usuario .btn {
+  font-weight: bold;
+  padding: 10px 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.botoes-usuario .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+ 
+.botoes-filtros {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+ 
+.botoes-filtros .btn {
+  font-weight: bold;
+  padding: 12px 24px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.botoes-filtros .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.filtro-btn.active {
+  color: #fff !important;
+  background-color: #0d6efd !important; /* azul do Bootstrap */
+  border-color: #0d6efd !important;
+}
+
+/* Apenas para o botÃ£o com Ã­cone de cadeado */
+.btn-outline-secondary {
+  background-color: #333; /* fundo escuro */
+  border-color: #333;
+  color: #fff; /* texto e Ã­cone claros */
+}
+
+.btn-outline-secondary i {
+  color: #101311; /* Ã­cone branco para contraste */
+}
+
+/* Efeito hover para dar destaque */
+.btn-outline-secondary:hover {
+  background-color: #555; /* um pouco mais claro no hover */
+  border-color: #555;
+}
+
+ /* Botão de download universal */
+  #installAppBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 9999;
+    transition: transform 0.2s, background-color 0.3s;
+  }
+
+  #installAppBtn:hover {
+    transform: scale(1.05);
+    background-color: #0056b3;
+  }
+
+  /* Mini-toast de feedback */
+  #toastDownload {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: rgba(0,0,0,0.85);
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s, transform 0.3s;
+    z-index: 9998;
+  }
+
+  #toastDownload.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+.popup {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+ 
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  position: relative;
+  animation: fadeIn 0.4s ease-in-out;
+}
+ 
+.close {
+  position: absolute;
+  top: 10px; right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+ 
+.botoes-container {
+  display: flex;
+ /* flex-wrap: wrap;  Permite quebrar se necessÃ¡rio */
+  gap: 8px;
+  justify-content: center;
+}
+
+.foto-preview {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  margin-top: 10px;
+}
+
+#imagePreview {
+  max-width: 400px;   /* largura mÃ¡xima */
+  max-height: 400px;  /* altura mÃ¡xima */
+  display: block;
+  margin: 0 auto;
+}
+ 
+/* deixa o botÃ£o exportar excel largo
+.botoes-container button { */
+  /*flex: 1 1 auto;  Ajusta proporcionalmente */
+  /* min-width: 90px; DiminuÃ­mos o tamanho mÃ­nimo */
+  /*padding: 8px 10px;  Menos espaÃ§o interno */
+  /*font-size: 13px;  Fonte menor */
+  /*border-radius: 6px;
+  cursor: pointer;
+}*/
+ 
+/* deixa o botÃ£o exportar excel largo
+.botoes-container button {
+  flex: 1 1 auto;
+  min-width: 90px;
+  padding: 8px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+  cursor: pointer;
+}*/
+ 
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+ 
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+ 
+.tarefa-concluida {
+  transition: background-color 0.4s ease;
+}
+ 
+/* Cada item da lista */
+#listaTarefas .list-group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Para telas pequenas */
+  gap: 8px;
+  padding: 10px;
+}
+ 
+/* InformaÃ§Ãµes da tarefa */
+.tarefa-info {
+  flex: 1;
+}
+ 
+/* ContÃªiner dos botÃµes */
+.tarefa-acoes {
+  display: flex;
+  gap: 6px;
+}
+ 
+.tarefa-acoes button {
+  width: 40px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+ 
+/* Ajuste para telas muito pequenas */
+@media (max-width: 400px) {
+  #listaTarefas .list-group-item {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+ 
+/* Ajuste para telas muito pequenas */
+@media (max-width: 400px) {
+  .tarefa {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Para telas muito pequenas */
+@media (max-width: 400px) {
+  .botoes-container {
+  flex-direction: column; /* Empilha se ficar muito apertado */
+   align-items: center;
+  }
+}
+ 
+/* Ajuste para tablets */
+@media (max-width: 768px) {
+  #mensagemUsuario {
+    font-size: 1.5rem;
+    padding: 0 10px; /* adiciona espaÃ§o lateral */
+    line-height: 1.4; /* melhora leitura */
+  }
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+  #mensagemUsuario {
+    font-size: 1.2rem;
+    padding: 0 15px;
+    line-height: 1.3;
+    word-break: break-word; /* evita overflow */
+  }
+}

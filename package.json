@@ -1,0 +1,44 @@
+{
+  "name": "gerenciador_tarefas",
+  "version": "1.0.0",
+  "description": "Aplicativo de gerenciamento de tarefas",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^25.2.0",
+    "electron-builder": "^24.13.3",
+    "electron-reload": "^1.5.0"
+  },
+  "build": {
+    "appId": "com.wellington.gerenciador",
+    "productName": "Gerenciador de Tarefas",
+    "directories": {
+      "buildResources": "assets"
+    },
+    "files": [
+      "assets/**/*",
+      "audio/**/*",
+      "download/**/*",
+      "js/**/*",
+      "pic/**/*",
+      "index.js",
+      "index.html",
+      "manifest.json",
+      "style.css",
+      "package.json"
+    ],
+    "asar": true,
+    "win": {
+      "target": "nsis",
+      "icon": "assets/pic/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

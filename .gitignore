@@ -1,0 +1,35 @@
+git commit -m "Adicionando arquivos do projeto"
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Build / distribuição
+dist/
+*.log
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Arquivos de instalação e executáveis
+*.exe
+*.apk
+*.dmg
+*.bat
+
+# Imagens temporárias ou duplicadas
+*.ico.png
+*.ico.jpg
+
+# Arquivos de ambiente
+.env
+
+# Cache e arquivos temporários
+*.tmp
+*.swp

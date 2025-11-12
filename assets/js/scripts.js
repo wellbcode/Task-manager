@@ -18,34 +18,102 @@ window.addEventListener("load", () => {
   renderizarTarefas("todas");
 });
 
-// Login
-function salvarUsuario(nome, usuario, pin, genero, foto) {
-  const dadosUsuario = { nome, usuario, pin, genero, foto };
-  localStorage.setItem("usuario_" + usuario, JSON.stringify(dadosUsuario));
-  Swal.fire("Cadastro realizado com sucesso!");
-}
+// // Login
+// function salvarUsuario(nome, usuario, pin, genero, foto) {
+//   const dadosUsuario = { nome, usuario, pin, genero, foto };
+//   localStorage.setItem("usuario_" + usuario, JSON.stringify(dadosUsuario));
+//   Swal.fire("Cadastro realizado com sucesso!");
+// }
 
-function loginUsuario() {
-  const nomeUsuario = document.getElementById("loginUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
-  const pin = document.getElementById("loginPin").value.trim();
-  const dados = JSON.parse(localStorage.getItem("usuario_" + nomeUsuario));
+import { cadastrarUsuario } from "./auth_pin.js";
 
-  if (!dados || dados.pin !== pin) {
-    Swal.fire("Nome de usuário ou PIN incorretos!");
+// Função de cadastro (com foto e gênero)
+document.getElementById("btnCadastrar").addEventListener("click", async () => {
+  const nomeCompleto = document.getElementById("cadastroNome").value.trim();
+  const usuario = document.getElementById("cadastroUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
+  const pin = document.getElementById("cadastroPin").value.trim();
+  const genero = document.getElementById("cadastroGenero").value;
+  const fotoInput = document.getElementById("cadastroFoto");
+
+  if (!nomeCompleto || !usuario || !pin) {
+    Swal.fire("⚠️ Preencha todos os campos!");
     return;
   }
 
-  sessionStorage.setItem("usuarioAtivo", nomeUsuario);
-  document.getElementById("conteudoPrincipal").style.display = "block";
-  exibirMensagemUsuario(dados.usuario, dados.genero);
+  // Converte foto pra base64 se existir
+  let base64Foto = "";
+  if (fotoInput.files.length > 0) {
+    base64Foto = await converterArquivoParaBase64(fotoInput.files[0]);
+  }
 
-  // Aqui sim atualiza a foto real
-  atualizarFotoUsuario(dados.foto);
+  await cadastrarUsuario(nomeCompleto, usuario, pin, genero, base64Foto);
+});
 
-  document.getElementById("formularioLoginCadastro").style.display = "none";
+/**
+ * Converte imagem em base64 (async)
+ */
+function converterArquivoParaBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = e => reject(e);
+    reader.readAsDataURL(file);
+  });
 }
 
+
+// function loginUsuario() {
+//   const nomeUsuario = document.getElementById("loginUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
+//   const pin = document.getElementById("loginPin").value.trim();
+//   const dados = JSON.parse(localStorage.getItem("usuario_" + nomeUsuario));
+
+//   if (!dados || dados.pin !== pin) {
+//     Swal.fire("Nome de usuário ou PIN incorretos!");
+//     return;
+//   }
+
+//   sessionStorage.setItem("usuarioAtivo", nomeUsuario);
+//   document.getElementById("conteudoPrincipal").style.display = "block";
+//   exibirMensagemUsuario(dados.usuario, dados.genero);
+
+//   // Aqui sim atualiza a foto real
+//   atualizarFotoUsuario(dados.foto);
+
+//   document.getElementById("formularioLoginCadastro").style.display = "none";
+// }
+
+
+
 // usuário sai
+import { loginComPin, observarUsuario } from "./auth_pin.js";
+import { db } from "./firebase.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+
+document.getElementById("btnEntrar").addEventListener("click", async () => {
+  const usuario = document.getElementById("loginUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
+  const pin = document.getElementById("loginPin").value.trim();
+
+  if (!usuario || !pin) {
+    Swal.fire("⚠️ Preencha usuário e PIN!");
+    return;
+  }
+
+  const user = await loginComPin(usuario, pin);
+  if (!user) return; // erro já tratado
+
+  const dadosRef = doc(db, "usuarios", user.uid);
+  const snapshot = await getDoc(dadosRef);
+
+  if (snapshot.exists()) {
+    const dados = snapshot.data();
+    exibirMensagemUsuario(dados.usuario, dados.genero);
+    atualizarFotoUsuario(dados.foto);
+    document.getElementById("conteudoPrincipal").style.display = "block";
+    document.getElementById("formularioLoginCadastro").style.display = "none";
+  }
+});
+
+
 function logoutUsuario() {
   Swal.fire({
     title: "Deseja sair?",
@@ -78,26 +146,27 @@ function logoutUsuario() {
 
 
 // Função para cadastrar usuário
-function cadastrarUsuario() {
-  const nomeCompleto = document.getElementById("cadastroNome").value.trim();
-  const usuario = document.getElementById("cadastroUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
-  const pin = document.getElementById("cadastroPin").value.trim();
-  const genero = document.getElementById("cadastroGenero").value;
-  const fotoInput = document.getElementById("cadastroFoto");
+// function cadastrarUsuario() {
+//   const nomeCompleto = document.getElementById("cadastroNome").value.trim();
+//   const usuario = document.getElementById("cadastroUsuario").value.trim().toLowerCase().replace(/\s+/g, "");
+//   const pin = document.getElementById("cadastroPin").value.trim();
+//   const genero = document.getElementById("cadastroGenero").value;
+//   const fotoInput = document.getElementById("cadastroFoto");
 
-  if (!nomeCompleto || !usuario || !pin) {
-    Swal.fire("Preencha todos os campos!");
-    return;
-  }
+//   if (!nomeCompleto || !usuario || !pin) {
+//     Swal.fire("Preencha todos os campos!");
+//     return;
+//   }
 
-  if (fotoInput.files.length > 0) {
-    converterParaBase64(fotoInput.files[0], function(base64Foto) {
-      salvarUsuario(nomeCompleto, usuario, pin, genero, base64Foto);
-    });
-  } else {
-    salvarUsuario(nomeCompleto, usuario, pin, genero, "");
-  }
-}
+//   if (fotoInput.files.length > 0) {
+//     converterParaBase64(fotoInput.files[0], function(base64Foto) {
+//       salvarUsuario(nomeCompleto, usuario, pin, genero, base64Foto);
+//     });
+//   } else {
+//     salvarUsuario(nomeCompleto, usuario, pin, genero, "");
+//   }
+// }
+
 
 function limparFormularioCadastro() {
   document.getElementById("cadastroNome").value = "";

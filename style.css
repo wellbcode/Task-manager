@@ -475,29 +475,39 @@ button {
   cursor: pointer;
 }
 
-/* =======================
-   🚫 Aviso de modo offline
-   ======================= */
-body.offline::before {
-  content: "⚠️ Você está offline. As alterações serão salvas localmente e sincronizadas quando a conexão voltar.";
-  display: block;
+/* ===== Banner de conexão ===== */
+#banner-offline {
   position: fixed;
-  top: 0;
+  top: -60px;
   left: 0;
   width: 100%;
-  background-color: #ffcc00;
-  color: #000;
-  padding: 12px 10px;
   text-align: center;
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 999;
-  animation: slide-down 0.4s ease-out;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  background-color: #FFD700;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: top 0.4s ease, background-color 0.3s ease;
+  z-index: 9999;
 }
 
-/* 🔄 Animação suave do banner */
+/* Mostra suavemente */
+#banner-offline.show {
+  top: 0;
+}
+
+/* Animação de fade-out */
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
 
 @keyframes slide-in {
   from {
@@ -509,40 +519,6 @@ body.offline::before {
     opacity: 1;
   }
 }
-
-/* Banner offline */
-#banner-offline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 12px 10px;
-  text-align: center;
-  background-color: #ffcc00;
-  color: #000;
-  font-weight: bold;
-  font-family: sans-serif;
-  font-size: 15px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  z-index: 99999; /* muito alto */
-  display: none; /* começa invisível */
-}
-
-/* Animação de entrada */
-#banner-offline.show {
-  display: block;
-  animation: slide-down 0.4s ease-out;
-}
-
-@keyframes slide-down {
-  from {
-     transform: translateY(-100%);
-     }
-  to  { 
-    transform: translateY(0); 
-  }
-}
-
 
 @keyframes slide-in {
   from {

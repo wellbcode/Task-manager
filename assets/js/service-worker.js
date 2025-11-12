@@ -51,12 +51,12 @@ self.addEventListener('fetch', event => {
   );
 });
 
- URLS_TO_CACHE = [
-  '../../index.html',
-  '../../style.css',
-  './scripts.js',
-  '../audios/success-1-6297.mp3',
-  '../audios/wah-wah-sad-trombone-6347.mp3',
-  '../pic/target.png',
-  '../../manifest.json' // 👈 novo
-];
+//  URLS_TO_CACHE = [
+//   '../../index.html',
+//   '../../style.css',
+//   './scripts.js',
+//   '../audios/success-1-6297.mp3',
+//   '../audios/wah-wah-sad-trombone-6347.mp3',
+//   '../pic/target.png',
+//   '../../manifest.json' // 👈 novo
+// ];

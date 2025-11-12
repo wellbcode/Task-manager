@@ -475,82 +475,29 @@ button {
   cursor: pointer;
 }
 
-.offline::before {
-  content: "⚠️ Você está offline";
+/* =======================
+   🚫 Aviso de modo offline
+   ======================= */
+body.offline::before {
+  content: "⚠️ Você está offline. As alterações serão salvas localmente e sincronizadas quando a conexão voltar.";
   display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   background-color: #ffcc00;
   color: #000;
-  padding: 10px;
+  padding: 12px 10px;
   text-align: center;
   font-weight: bold;
   font-family: sans-serif;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+  animation: slide-down 0.4s ease-out;
 }
 
-.alerta-sync {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #4caf50;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-family: sans-serif;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: slide-in 0.3s ease-out;
-  z-index: 1000;
-}
-
-.alerta-sync .icone {
-  font-size: 20px;
-  margin-right: 10px;
-}
-
-.alerta-sync.fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-.alerta-sync {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  color: white;
-  padding: 12px 18px;
-  border-radius: 8px;
-  font-family: sans-serif;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  animation: slide-in 0.3s ease-out;
-  z-index: 1000;
-}
-
-.alerta-sync .icone {
-  font-size: 20px;
-  margin-right: 10px;
-}
-
-.alerta-sync.fade-out {
-  opacity: 0;
-  transition: opacity 0.5s ease-out;
-}
-
-/* Tipos de alerta */
-.alerta-sync.sucesso {
-  background-color: #4caf50; /* verde */
-}
-
-.alerta-sync.erro {
-  background-color: #f44336; /* vermelho */
-}
-
-.alerta-sync.aviso {
-  background-color: #ff9800; /* laranja */
-}
+/* 🔄 Animação suave do banner */
 
 @keyframes slide-in {
   from {
@@ -562,6 +509,40 @@ button {
     opacity: 1;
   }
 }
+
+/* Banner offline */
+#banner-offline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 10px;
+  text-align: center;
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  font-family: sans-serif;
+  font-size: 15px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 99999; /* muito alto */
+  display: none; /* começa invisível */
+}
+
+/* Animação de entrada */
+#banner-offline.show {
+  display: block;
+  animation: slide-down 0.4s ease-out;
+}
+
+@keyframes slide-down {
+  from {
+     transform: translateY(-100%);
+     }
+  to  { 
+    transform: translateY(0); 
+  }
+}
+
 
 @keyframes slide-in {
   from {

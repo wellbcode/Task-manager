@@ -41,13 +41,34 @@ function removerBannerOffline() {
 }
 
 // ===== Eventos online/offline =====
-window.addEventListener("offline", () => {
-  mostrarBannerOffline();
-  mostrarAlerta("⚠️ Você está offline. As alterações serão salvas localmente.", "aviso");
+document.addEventListener("DOMContentLoaded", () => {
+  const banner = document.getElementById("banner-offline");
+
+  // Mostra o banner com a cor e mensagem desejadas
+  function showBanner(bg, text) {
+    banner.style.display = "block";
+    banner.style.backgroundColor = bg;
+    banner.textContent = text;
+    banner.classList.add("show");
+  }
+
+  // Oculta o banner suavemente
+  function hideBanner() {
+    banner.classList.remove("show");
+    setTimeout(() => (banner.style.display = "none"), 400);
+  }
+
+  // Quando ficar offline
+  window.addEventListener("offline", () => {
+    showBanner("#FFD700", "⚠️ Você está offline. As alterações serão salvas localmente e sincronizadas quando a conexão voltar.");
+    document.body.classList.add("offline");
+  });
+
+  // Quando voltar a conexão
+  window.addEventListener("online", () => {
+    document.body.classList.remove("offline");
+    showBanner("#32CD32", "✅ Conexão restabelecida! Sincronizando dados...");
+    setTimeout(hideBanner, 4000);
+  });
 });
 
-window.addEventListener("online", () => {
-  removerBannerOffline();
-  mostrarAlerta("✅ Conexão restabelecida! Sincronizando tarefas...", "sucesso");
-  sincronizarLocalParaFirestore();
-});

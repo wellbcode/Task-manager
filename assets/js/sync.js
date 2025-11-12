@@ -7,6 +7,7 @@ export function sincronizarLocalParaFirestore() {
   });
   localStorage.removeItem("tarefas");
   mostrarAlerta("✅ Tarefas sincronizadas com sucesso!", "sucesso");
+  console.log("💾 Sincronização concluída com o Firestore!");
 }
 
 // ===== Alerta de sincronização =====
@@ -26,28 +27,32 @@ function mostrarAlerta(msg, tipo = "sucesso") {
 
 // ===== Banner Offline/Online =====
 document.addEventListener("DOMContentLoaded", () => {
-  // Garante que o banner existe (ou cria)
+  // Sons
+  const ping = new Audio("./assets/audios/success-1-6297.mp3");
+  const wah = new Audio("./assets/audios/wah-wah-sad-trombone-6347.mp3");
+
+  // Cria ou retorna o banner
   function getBanner() {
     let banner = document.getElementById("banner-offline");
     if (!banner) {
       banner = document.createElement("div");
       banner.id = "banner-offline";
+      banner.classList.add("banner-conexao");
       document.body.appendChild(banner);
     }
     return banner;
   }
 
-  // Mostra o banner com a cor e texto desejado
+  // Mostra o banner com animação
   function showBanner(bg, text, color = "#000") {
     const banner = getBanner();
-    banner.style.display = "block";
     banner.style.backgroundColor = bg;
     banner.style.color = color;
     banner.textContent = text;
     banner.classList.add("show");
   }
 
-  // Oculta o banner suavemente
+  // Esconde o banner suavemente
   function hideBanner() {
     const banner = document.getElementById("banner-offline");
     if (!banner) return;
@@ -57,28 +62,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Quando ficar offline
   window.addEventListener("offline", () => {
+    console.log("📴 Modo offline detectado");
     showBanner(
       "#FFD700",
       "⚠️ Você está offline. As alterações serão salvas localmente e sincronizadas quando a conexão voltar.",
       "#000"
     );
-    document.body.classList.add("offline");
+    wah.play().catch(() => {});
   });
 
   // Quando voltar a conexão
   window.addEventListener("online", () => {
-    document.body.classList.remove("offline");
+    console.log("📶 Conexão restabelecida, sincronizando dados...");
     showBanner("#32CD32", "✅ Conexão restabelecida! Sincronizando dados...", "#fff");
-
-    const banner = document.getElementById("banner-offline");
-    // Aplica animação suave de saída após 3,5s
-    banner.style.animation = "fadeOut 0.5s ease 3.5s forwards";
-
-    // Remove após animação
-    setTimeout(() => {
-      banner.classList.remove("show");
-      banner.style.display = "none";
-      banner.style.animation = "";
-    }, 4000);
+    ping.play().catch(() => {});
+    setTimeout(hideBanner, 4000);
   });
 });

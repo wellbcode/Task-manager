@@ -1,7 +1,7 @@
 // Nome do cache
 const CACHE_NAME = 'gerenciador-cache-v1';
 
-// Arquivos que devem ser armazenados para uso offline
+// Arquivos para cache offline
 const URLS_TO_CACHE = [
   '../../index.html',
   '../../style.css',
@@ -11,54 +11,37 @@ const URLS_TO_CACHE = [
   '../pic/target.png',
   '../pic/default.jpg',
   '../pic/task-icon.png',
-  '../../manifest.json' // 👈 mantém o manifest também
+  '../../manifest.json'
 ];
 
-// Instalação do Service Worker
+// Instalação
 self.addEventListener('install', event => {
-  console.log('[Service Worker] Instalando...');
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('[Service Worker] Cacheando arquivos...');
-        return cache.addAll(URLS_TO_CACHE);
-      })
-      .catch(err => console.error('[Service Worker] Erro ao cachear arquivos:', err))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(URLS_TO_CACHE))
   );
   self.skipWaiting();
 });
 
-// Ativação do Service Worker
+// Ativação
 self.addEventListener('activate', event => {
-  console.log('[Service Worker] Ativado');
   event.waitUntil(
     caches.keys().then(keys => {
-      return Promise.all(
-        keys
-          .filter(key => key !== CACHE_NAME)
-          .map(key => caches.delete(key))
-      );
+      return Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)));
     })
   );
   self.clients.claim();
 });
 
-// Intercepta as requisições (modo offline melhorado)
+// Estratégia: rede primeiro, cache fallback
 self.addEventListener('fetch', event => {
-  // Evita interceptar chamadas do próprio navegador (ex: chrome-extension)
   if (!event.request.url.startsWith('http')) return;
-
   event.respondWith(
     fetch(event.request)
       .then(response => {
-        // Se online, atualiza o cache
         const clone = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         return response;
       })
-      .catch(() => {
-        // Se der erro (offline), tenta servir do cache
-        return caches.match(event.request);
-      })
+      .catch(() => caches.match(event.request))
   );
 });

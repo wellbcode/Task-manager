@@ -475,7 +475,7 @@ button {
   cursor: pointer;
 }
 
-/* ===== Banner de conexão ===== */
+/* ===== Banner de Conexão ===== */
 #banner-offline {
   position: fixed;
   top: -60px;
@@ -490,12 +490,35 @@ button {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: top 0.4s ease, background-color 0.3s ease;
   z-index: 9999;
+  opacity: 0;
 }
 
-/* Mostra suavemente */
 #banner-offline.show {
   top: 0;
+  opacity: 1;
 }
+
+/* Fade para o alerta */
+.alerta-sync {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  font-weight: 600;
+  z-index: 10000;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+
+.alerta-sync.fade-out {
+  opacity: 0;
+}
+
 
 /* Animação de fade-out */
 @keyframes fadeOut {

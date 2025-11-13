@@ -140,11 +140,10 @@ input.form-control {
   margin-top: -5px;
 }
 
-/* BotÃ£o Salvar AlteraÃ§Ãµes */
+/* Botão Salvar Alterações */
 #formAtualizarPerfil .btn-warning {
   width: 100%;
 }
-
 
 select.form-select {
   border-left: 4px solid green;
@@ -295,15 +294,15 @@ button {
   border-color: #0d6efd !important;
 }
 
-/* Apenas para o botÃ£o com Ã­cone de cadeado */
+/* Apenas para o botão com ícone de cadeado */
 .btn-outline-secondary {
   background-color: #333; /* fundo escuro */
   border-color: #333;
-  color: #fff; /* texto e Ã­cone claros */
+  color: #fff; /* texto e ícone claros */
 }
 
 .btn-outline-secondary i {
-  color: #101311; /* Ã­cone branco para contraste */
+  color: #101311; /* í­cone branco para contraste */
 }
 
 /* Efeito hover para dar destaque */
@@ -312,7 +311,7 @@ button {
   border-color: #555;
 }
 
- /* Botão de download universal */
+ /* Botão de download universal
   #installAppBtn {
     position: fixed;
     bottom: 20px;
@@ -336,8 +335,8 @@ button {
     transform: scale(1.05);
     background-color: #0056b3;
   }
-
-  /* Mini-toast de feedback */
+ */
+  /* Mini-toast de feedback 
   #toastDownload {
     position: fixed;
     bottom: 80px;
@@ -356,7 +355,8 @@ button {
   #toastDownload.show {
     opacity: 1;
     transform: translateY(0);
-  }
+  }*/
+
 .popup {
   display: none;
   position: fixed;
@@ -409,7 +409,7 @@ button {
   margin: 0 auto;
 }
  
-/* deixa o botÃ£o exportar excel largo
+/* deixa o botão exportar excel largo
 .botoes-container button { */
   /*flex: 1 1 auto;  Ajusta proporcionalmente */
   /* min-width: 90px; DiminuÃ­mos o tamanho mÃ­nimo */

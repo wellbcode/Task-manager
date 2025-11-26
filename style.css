@@ -288,11 +288,33 @@ button {
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
 
-.filtro-btn.active {
+/* .filtro-btn.active {
   color: #fff !important;
-  background-color: #0d6efd !important; /* azul do Bootstrap */
+  background-color: #0d6efd !important;  azul do Bootstrap 
   border-color: #0d6efd !important;
+} */
+
+/* TODAS (primário) */
+.btn-outline-primary.active {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+  color: #fff !important;
 }
+
+/* PENDENTES (vermelho) */
+.btn-outline-danger.active {
+  background-color: #dc3545 !important;
+  border-color: #dc3545 !important;
+  color: #fff !important;
+}
+
+/* CONCLUÍDAS (verde) */
+.btn-outline-success.active {
+  background-color: #198754 !important;
+  border-color: #198754 !important;
+  color: #fff !important;
+}
+
 
 /* Apenas para o botão com ícone de cadeado */
 .btn-outline-secondary {

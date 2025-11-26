@@ -18,7 +18,7 @@
 <body class="dark-mode">
   <!--Botão dark-mode-->
   <button id="toggleDarkMode" class="btn btn-dark mb-3">
-    <i id="iconDarkMode" class="bi bi-moon-fill" style="color:#FFD700;"></i> Alternar Tema
+    <i id="iconDarkMode" class="bi bi-moon-fill"></i> Alternar Tema
   </button>
   
   <!--Ícone de login e cadastro-->
@@ -103,7 +103,7 @@
     </div>
   </div>
   <!-- Área de login/cadastro aqui em cima -->
-  <div id="conteudoPrincipal" style="display:none;"></div>
+  <div id="conteudoPrincipal"></div>
   
   <!-- Formulário de atualizar -->
   <div class="usuario-header text-center">
@@ -114,60 +114,60 @@
     <button onclick="abrirAtualizacaoPerfil()" class="btn btn-outline-warning mb-2"> 
     <i class="bi bi-pencil-square me-1"></i> Atualizar Perfil
     </button>
- 
-   <!-- Formulário de atualização -->
-   <div id="formAtualizarPerfil" style="display: none;" class="mt-3">
-    <input type="text" id="novoNomeCompleto" class="form-control mb-2" placeholder="Novo nome completo">
-    <input type="text" id="novoNomeUsuario" class="form-control mb-2" placeholder="Novo nome de usuário">
-    
-    <!-- Novo campo Gênero -->
-    <div class="mb-3">
-      <label for="novoGenero" class="form-label"></label>
-      <select id="novoGenero" class="form-select">
-        <option value="masculino">Masculino</option>
-        <option value="feminino">Feminino</option>
-        <option value="outro">Outro</option>
-      </select>
+  
+    <!-- Formulário de atualização -->
+    <div id="formAtualizarPerfil" style="display: none;" class="mt-3">
+      <input type="text" id="novoNomeCompleto" class="form-control mb-2" placeholder="Novo nome completo">
+      <input type="text" id="novoNomeUsuario" class="form-control mb-2" placeholder="Novo nome de usuário">
+      
+      <!-- Novo campo Gênero -->
+      <div class="mb-3">
+        <label for="novoGenero" class="form-label"></label>
+        <select id="novoGenero" class="form-select">
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+          <option value="outro">Outro</option>
+        </select>
+      </div>
+
+        <!-- campo de nova senha -->
+      <div class="input-group mb-2">
+        <input type="password" id="novoPin" class="form-control" placeholder="Digite seu PIN">
+        <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('novoPin', this)">
+          <i class="bi bi-lock-fill"></i>
+        </button>
+      </div>
+
+      <!-- Barra de força Atualizar perfil -->
+        <div class="barra-container">
+          <div id="barraForcaPinAtualizar" class="barra"></div> 
+        </div> 
+        <div>
+          <div id="textoForcaPinAtualizar" class="mt-2 fw-bold text-center"></div>
+        </div> 
+        <div id="avisoPinRepetidoAtualizar" class="mt-2 fw-bold" style="color:red;"></div>
+
+
+      <!-- Seleciona a nova foto e carrega -->
+      <input type="file" id="novaFoto" class="form-control" accept="image/*,application/pdf">
+      
+      <div id="cropContainerAtualizar" style="display:none; text-align:center; margin-top:10px;">
+        <img id="imagePreviewAtualizar" style="max-width:100%; border-radius:8px;" />
+        <button id="cropButtonAtualizar" class="btn btn-primary mt-2">Recortar e Salvar</button>
+      </div>
+
+      <!-- <div id="cropContainer" style="display:none; text-align:center; margin-top:10px;">
+        <img id="imagePreview" style="max-width:100%; border-radius:8px;" />
+        <button id="cropButton" class="btn btn-primary mt-2">Recortar e Salvar</button>
+      </div> -->
+
+      <!-- Foto do perfil -->
+      <!-- <img id="fotoPerfil" src="" alt="Foto do perfil" style="width:120px; height:120px; border-radius:50%; margin-top:10px;"> -->
+
+      <div class="text-center mt-3">
+        <button onclick="atualizarPerfil()" class="btn btn-warning">Salvar Alterações</button>
+      </div>
     </div>
-
-      <!-- campo de nova senha -->
-    <div class="input-group mb-2">
-      <input type="password" id="novoPin" class="form-control" placeholder="Digite seu PIN">
-      <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('novoPin', this)">
-        <i class="bi bi-lock-fill"></i>
-      </button>
-    </div>
-
-    <!-- Barra de força Atualizar perfil -->
-      <div class="barra-container">
-        <div id="barraForcaPinAtualizar" class="barra"></div> 
-      </div> 
-      <div>
-        <div id="textoForcaPinAtualizar" class="mt-2 fw-bold text-center"></div>
-      </div> 
-      <div id="avisoPinRepetidoAtualizar" class="mt-2 fw-bold" style="color:red;"></div>
-
-
-    <!-- Seleciona a nova foto e carrega -->
-    <input type="file" id="novaFoto" class="form-control" accept="image/*,application/pdf">
-    
-    <div id="cropContainerAtualizar" style="display:none; text-align:center; margin-top:10px;">
-      <img id="imagePreviewAtualizar" style="max-width:100%; border-radius:8px;" />
-      <button id="cropButtonAtualizar" class="btn btn-primary mt-2">Recortar e Salvar</button>
-    </div>
-
-    <!-- <div id="cropContainer" style="display:none; text-align:center; margin-top:10px;">
-      <img id="imagePreview" style="max-width:100%; border-radius:8px;" />
-      <button id="cropButton" class="btn btn-primary mt-2">Recortar e Salvar</button>
-    </div> -->
-
-    <!-- Foto do perfil -->
-    <!-- <img id="fotoPerfil" src="" alt="Foto do perfil" style="width:120px; height:120px; border-radius:50%; margin-top:10px;"> -->
-
-  <div class="text-center mt-3">
-    <button onclick="atualizarPerfil()" class="btn btn-warning">Salvar Alterações</button>
-  </div>
-  </div>
   </div>
  
   <!-- Botão de logout -->
@@ -257,6 +257,8 @@
     Swal.fire('Alerta direto no navegador!');
   </script> -->
   <script src="assets/js/scripts.js"></script>
+  <script type="module" src="assets/js/firebase.js"></script>
+  <!-- <script type="module" src="assets/js/script.js"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- Script de rodar offline -->

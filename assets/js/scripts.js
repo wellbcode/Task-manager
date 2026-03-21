@@ -459,6 +459,13 @@ function carregarTarefas() {
 tarefas = JSON.parse(localStorage.getItem(chaveTarefasUsuario()) || "[]");
 }
 
+const btn = document.getElementById("toggleBtn");
+const form = document.getElementById("formContainer");
+
+btn.onclick = () => {
+  form.classList.toggle("hidden");
+};
+
 /* === Formulário de tarefas === */
 document.getElementById("formTarefa").addEventListener("submit", function (e) {
   e.preventDefault();

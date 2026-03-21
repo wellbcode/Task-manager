@@ -183,35 +183,42 @@
   <!-- Formulário -->
   <div class="card mb-4">
     <div class="card-body">
-      <h5 class="card-title">Adicionar Nova Tarefa</h5>
-      <form id="formTarefa">
-        <div class="mb-3">
-          <input type="text" class="form-control" id="novaTarefa" placeholder="Digite sua tarefa..." required>
-        </div>
-        <div class="mb-3">
-          <select class="form-select" id="categoriaTarefa">
-            <option value="Trabalho">Trabalho</option>
-            <option value="Pessoal">Pessoal</option>
-            <option value="Estudos">Estudos</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <input type="date" class="form-control" id="vencimentoTarefa">
-        </div>
-      <div class="botoes-container">  
-        <button type="submit" class="btn btn-primary">
-          <i class="bi bi-plus-circle me-1"></i> Adicionar Tarefa
+      <h5 class="d-flex justify-content-between align-items-center">
+        Adicionar Nova Tarefa 
+        <button type="button" id="toggleBtn" class="btn-seta">
+          <i class="bi bi-arrow-repeat"></i>
         </button>
-        <!--===Botão para exportar o PDF===-->
-        <button type="button" class="btn btn-secondary ms-2" onclick="exportarPDF()">
-          <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
-        </button>
-         <!--===Botão para exportar o EXCEL===-->
-        <button type="button" class="btn btn-success ms-2" onclick="exportarExcel()">
-          <i class="bi bi-file-earmark-excel"></i> Exportar Excel
-        </button>
+      </h5>
+      <div id="formContainer">
+        <form id="formTarefa">
+          <div class="mb-3">
+            <input type="text" class="form-control" id="novaTarefa" placeholder="Digite sua tarefa..." required>
+          </div>
+          <div class="mb-3">
+            <select class="form-select" id="categoriaTarefa">
+              <option value="Trabalho">Trabalho</option>
+              <option value="Pessoal">Pessoal</option>
+              <option value="Estudos">Estudos</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <input type="date" class="form-control" id="vencimentoTarefa">
+          </div>
+        <div class="botoes-container">  
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-plus-circle me-1"></i> Adicionar Tarefa
+          </button>
+          <!--===Botão para exportar o PDF===-->
+          <button type="button" class="btn btn-secondary ms-2" onclick="exportarPDF()">
+            <i class="bi bi-file-earmark-pdf"></i> Exportar PDF
+          </button>
+          <!--===Botão para exportar o EXCEL===-->
+          <button type="button" class="btn btn-success ms-2" onclick="exportarExcel()">
+            <i class="bi bi-file-earmark-excel"></i> Exportar Excel
+          </button>
+        </div>
+        </form>
       </div>
-      </form>
     </div>
   </div>
  

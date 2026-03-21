@@ -248,34 +248,39 @@ button {
 
 /* expandir abre e fecha */
 .btn-seta {
-  background: #2f5fa7; /* azul */
+  background: #2f5fa7;
   border: none;
   color: white;
-  width: 35px;
-  height: 35px;
-  border-radius: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: 0.2s;
+  transition: 0.3s;
 }
 
 .btn-seta:hover {
   background: #244c88;
 }
 
-#formContainer {
+/* animação da lista */
+#listaTarefas {
   overflow: hidden;
-  max-height: 500px; /* altura suficiente pro form */
-  transition: max-height 1.2s ease;
-
+  max-height: 500px;
+  transition: max-height 0.8s ease;
 }
 
-#formContainer.hidden {
+#listaTarefas.hidden {
   max-height: 0;
 }
 
+/* rotação do ícone */
+.rotacionar {
+  transform: rotate(180deg);
+  transition: transform 0.4s ease;
+}
 
 .botoes{
   cursor: pointer;

@@ -459,12 +459,17 @@ function carregarTarefas() {
 tarefas = JSON.parse(localStorage.getItem(chaveTarefasUsuario()) || "[]");
 }
 
-const btn = document.getElementById("toggleBtn");
-const form = document.getElementById("formContainer");
+/* === JavaScript (com rotação 🔄) === */
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("toggleBtn");
+  const lista = document.getElementById("listaTarefas");
+  const icon = document.getElementById("iconToggle");
 
-btn.onclick = () => {
-  form.classList.toggle("hidden");
-};
+  btn.onclick = () => {
+    lista.classList.toggle("hidden");
+    icon.classList.toggle("rotacionar");
+  };
+});
 
 /* === Formulário de tarefas === */
 document.getElementById("formTarefa").addEventListener("submit", function (e) {

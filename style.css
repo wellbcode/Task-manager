@@ -47,7 +47,7 @@ body {
   color: #fff !important;
 }*/
 
-/* MantÃ©m inputs, botÃµes e textos internos intactos */
+/* Mantém inputs, botões e textos internos intactos */
 .dark-card input,
 .dark-card select,
 .dark-card button,
@@ -330,6 +330,30 @@ button {
   border-color: #0d6efd !important;
 } */
 
+/*Botões de Entrar ou Cadastrar e Sair*/
+.btn-outline-light{
+  background-color: #fff !important;
+  border-color: #333 !important;
+  color: #333 !important;
+}
+
+.btn-outline-light:hover{
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+/*Botão Atualizar perfil*/
+  .btn-outline-warning{
+ background-color: rgba(255, 238, 0, 0.891) !important; 
+  border-color: #333 !important;
+  color: #333 !important;
+}
+
+.btn-outline-warning:hover{
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
 /* TODAS (primário) */
 .btn-outline-primary.active {
   background-color: #0d6efd !important;
@@ -338,7 +362,7 @@ button {
 }
 
 /* PENDENTES (vermelho) */
-.btn-outline-danger.active {
+.btn-outline-danger.active { /*btn-danger*/
   background-color: #dc3545 !important;
   border-color: #dc3545 !important;
   color: #fff !important;

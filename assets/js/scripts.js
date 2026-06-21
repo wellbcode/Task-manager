@@ -147,7 +147,7 @@ function exibirMensagemUsuario(usuario, genero) {
   if (genero === "masculino") saud = "Seu lindo";
   if (genero === "feminino") saud = "Sua linda";
 
-  const mensagem = `${saudacao}, ${usuario.charAt(0).toUpperCase() + usuario.slice(1)}, ${saud}! Vamos realizar as tarefas de hoje?`;
+  const mensagem = `${saudacao}, ${usuario.charAt(0).toUpperCase() + usuario.slice(1)}, ${saud}! Quais tarefas temos para realizar?`;
   const elemento = document.getElementById("mensagemUsuario");
   elemento.textContent = mensagem;
 

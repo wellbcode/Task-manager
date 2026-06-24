@@ -41,12 +41,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* MantÃ©m inputs, botÃµes e textos intactos 
-.dark-card * {
-  background-color: black !important;
-  color: #fff !important;
-}*/
-
 /* Mantém inputs, botões e textos internos intactos */
 .dark-card input,
 .dark-card select,
@@ -61,35 +55,12 @@ body {
 .card {
   margin: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
-  background-image: linear-gradient(to left, rgb(17, 81, 141), #fff);
+  background-image: linear-gradient(to left, rgb(17, 81, 141), #b4a9a9);
 }
-
-/*Barra de rolagem nos cartÃµes de login/cadastro e tarefas
- .card-body {
-  max-height: 300px;  altura mÃ¡xima visÃ­vel 
-  overflow-y: auto;    ativa rolagem vertical 
-  padding-right: 10px;  espaÃ§o para nÃ£o colar na barra 
-} 
-
-/* Estilizar a barra de rolagem (opcional) 
-.card-body::-webkit-scrollbar {
-  width: 8px;
-}
-
-.card-body::-webkit-scrollbar-thumb {
-  background-color: #3085d6;  
-  border-radius: 4px;
-}
-
-.card-body::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
- */
 
 input.form-control {
   border-left: 4px solid green;
 }
-
 
 .progress {
   background-color: #e0e0e0;
@@ -122,10 +93,9 @@ input.form-control {
   transition: width 0.3s ease, background-color 0.3s ease;
 }
 
-
-/* Container do formulÃ¡rio de atualizaÃ§Ã£o */
+/* Container do formulário de atualização */
 #formAtualizarPerfil {
-  display: none; /* MantÃ©m oculto atÃ© ser chamado */
+  display: none; /* Mantém oculto o botão sem ser chamado */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
   background-image: linear-gradient(to left, rgb(17, 81, 141), #fff);
   border-radius: 10px;
@@ -211,7 +181,7 @@ button {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* sombra para contraste */
   text-align: center;
   margin-top: 15px;
-  /*animation: pulse 2s infinite;  animaÃ§Ã£o suave */
+  /*animation: pulse 2s infinite;  animação suave */
 }
 
 .form-section {
@@ -226,7 +196,7 @@ button {
   display: none;
   text-align: center;
   margin-top: 10px;
-  max-width: 300px; /* largura mÃ¡xima */
+  max-width: 300px; /* largura máxima */
   margin-left: auto;
   margin-right: auto;
 }
@@ -235,10 +205,9 @@ button {
 #imagePreviewCadastro,
 #imagePreviewAtualizar {
   max-width: 100%;
-  max-height: 300px; /* altura mÃ¡xima */
+  max-height: 300px; /* altura máxima */
   border-radius: 8px;
 }
-
 
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -248,24 +217,26 @@ button {
 
 /* expandir abre e fecha */
 .btn-seta {
-  background: #2f5fa7;
+  background: #7ad655;
   border: none;
   color: white;
   width: 36px;
   height: 36px;
-  border-radius: 4px;
+  border-radius: 50%;
+  margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: 0.3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,.2);
 }
 
 .btn-seta:hover {
-  background: #244c88;
+  background: #0d6efd; 
 }
 
-/* animação da lista */
+/* animação da lista de tarefas botão espandir */
 #listaTarefas {
   overflow: hidden;
   max-height: 500px;
@@ -281,6 +252,64 @@ button {
   transform: rotate(180deg);
   transition: transform 0.4s ease;
 }
+
+/* animação da login e cadastro */
+#loginConteudo,
+#cadastroConteudo {
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height 0.8s ease;
+}
+
+#loginConteudo.hidden,
+#cadastroConteudo.hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.form-title {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* mantém Login/Cadastro centralizado */
+  position: relative;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
+  background-image: linear-gradient(to left, rgb(17, 81, 141), #b4a9a9);
+}
+
+.btn-toggle-form {
+  position: absolute;
+  right: 10px; /* direita */
+}
+
+#formTarefa {
+  margin-top: 10px;
+  overflow: hidden;
+  max-height: 500px;
+  transition: max-height 0.8s ease;
+}
+
+#formTarefa.hidden {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.card-body h5 {
+  margin-bottom: 15px;
+}
+/* .hidden {
+  max-height: 0 !important;
+  overflow: hidden;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+} */
+
+/* .btn-toggle-form {
+ margin-left: auto;
+} */
 
 .botoes{
   cursor: pointer;

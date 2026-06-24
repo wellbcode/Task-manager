@@ -147,7 +147,7 @@ function exibirMensagemUsuario(usuario, genero) {
   if (genero === "masculino") saud = "Seu lindo";
   if (genero === "feminino") saud = "Sua linda";
 
-  const mensagem = `${saudacao}, ${usuario.charAt(0).toUpperCase() + usuario.slice(1)}, ${saud}! Quais tarefas temos para realizar?`;
+  const mensagem = `${saudacao}, ${usuario.charAt(0).toUpperCase() + usuario.slice(1)}, ${saud}! Quais tarefas temos para realizar hoje?`;
   const elemento = document.getElementById("mensagemUsuario");
   elemento.textContent = mensagem;
 
@@ -161,10 +161,6 @@ function exibirMensagemUsuario(usuario, genero) {
     elemento.style.color = "#03a9f4"; // azul (noite)
   }
 }
-/* Atualizar foto
- function atualizarFotoUsuario(fotoBase64) {
-  document.querySelector(".foto-usuario").src = fotoBase64 || "assets/pic/default.jpg";
-}*/
 
 const novaFotoInput = document.getElementById('novaFoto');
 if (novaFotoInput) {
@@ -411,7 +407,6 @@ function atualizarPerfil() {
   Swal.fire("Perfil atualizado com sucesso!");
 }
 
-
 function abrirAtualizacaoPerfil() {
   document.getElementById("formAtualizarPerfil").style.display = "block";
   const usuarioAtivo = sessionStorage.getItem("usuarioAtivo");
@@ -461,13 +456,29 @@ tarefas = JSON.parse(localStorage.getItem(chaveTarefasUsuario()) || "[]");
 
 /* === JavaScript (com rotação 🔄) === */
 document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("toggleBtn");
-  const lista = document.getElementById("listaTarefas");
-  const icon = document.getElementById("iconToggle");
 
-  btn.onclick = () => {
-    lista.classList.toggle("hidden");
-    icon.classList.toggle("rotacionar");
+ // Login
+  document.getElementById("toggleBtnLogin").onclick = () => {
+  document.getElementById("loginConteudo").classList.toggle("hidden");
+  document.getElementById("iconToggleLogin").classList.toggle("rotacionar");
+  };
+
+  // Cadastro
+  document.getElementById("toggleBtnCadastro").onclick = () => {
+  document.getElementById("cadastroConteudo").classList.toggle("hidden");
+  document.getElementById("iconToggleCadastro").classList.toggle("rotacionar");
+  };
+
+  // Adicionar Nova Tarefa
+  document.getElementById("toggleBtnNovaTarefa").onclick = () => {
+  document.getElementById("formTarefa").classList.toggle("hidden");
+  document.getElementById("iconToggleNovaTarefa").classList.toggle("rotacionar");
+  };
+
+  // Minhas Tarefas
+  document.getElementById("toggleBtn").onclick = () => {
+  document.getElementById("listaTarefas").classList.toggle("hidden");
+  document.getElementById("iconToggle").classList.toggle("rotacionar");
   };
 });
 

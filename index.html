@@ -35,7 +35,13 @@
   
             <!-- Seção Login -->
             <div class="form-section mb-4 p-3 border rounded">
-              <h5 class="text-center mb-3">Login</h5>
+              <h5 class="mb-3 form-title">
+                Login
+                <button type="button" id="toggleBtnLogin" class="btn-seta btn-toggle-form">
+                  <i class="bi bi-arrow-clockwise" id="iconToggleLogin"></i>
+                </button>
+              </h5>
+            <div id="loginConteudo">
               <input type="text" id="loginUsuario" class="form-control mb-2" placeholder="Nome de usuário">
   
               <div class="mb-3">
@@ -50,10 +56,16 @@
   
               <button onclick="loginUsuario()" class="btn btn-success w-100">Entrar</button>
             </div>
-  
+          </div>  
             <!-- Seção Cadastro -->
             <div class="form-section p-3 border rounded">
-              <h5 class="text-center mb-3">Cadastro</h5>
+              <h5 class="mb-3 form-title">
+                Cadastro
+                <button type="button" id="toggleBtnCadastro" class="btn-seta btn-toggle-form">
+                  <i class="bi bi-arrow-clockwise" id="iconToggleCadastro"></i>
+                </button>
+              </h5>
+            <div id="cadastroConteudo"> 
               <input type="text" id="cadastroNome" class="form-control mb-2" placeholder="Nome completo">
               <input type="text" id="cadastroUsuario" class="form-control mb-2" placeholder="Nome de usuário">
   
@@ -96,7 +108,7 @@
   
               <button onclick="cadastrarUsuario()" class="btn btn-primary w-100 mt-3">Cadastrar</button>
             </div>
-  
+          </div>  
           </div>
         </div>
       </div>
@@ -156,13 +168,6 @@
         <button id="cropButtonAtualizar" class="btn btn-primary mt-2">Recortar e Salvar</button>
       </div>
 
-      <!-- <div id="cropContainer" style="display:none; text-align:center; margin-top:10px;">
-        <img id="imagePreview" style="max-width:100%; border-radius:8px;" />
-        <button id="cropButton" class="btn btn-primary mt-2">Recortar e Salvar</button>
-      </div> -->
-
-      <!-- Foto do perfil -->
-      <!-- <img id="fotoPerfil" src="" alt="Foto do perfil" style="width:120px; height:120px; border-radius:50%; margin-top:10px;"> -->
 
       <div class="text-center mt-3">
         <button onclick="atualizarPerfil()" class="btn btn-warning">Salvar Alterações</button>
@@ -184,7 +189,11 @@
   <div class="card mb-4">
     <div class="card-body">
       <h5 class="d-flex justify-content-between align-items-center">
-        Adicionar Nova Tarefa</h5>
+        Adicionar Nova Tarefa
+        <button type="button" id="toggleBtnNovaTarefa" class="btn-seta btn-toggle-form">
+          <i class="bi bi-arrow-clockwise" id="iconToggleNovaTarefa"></i>
+        </button>
+      </h5>
         <form id="formTarefa">
           <div class="mb-3">
             <input type="text" class="form-control" id="novaTarefa" placeholder="Digite sua tarefa..." required>

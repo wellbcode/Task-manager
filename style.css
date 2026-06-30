@@ -683,7 +683,7 @@ button {
 
 @media (max-width: 600px) {
   .card {
-    max-width: 80%;
+    max-width: 100%;
     margin: 10px auto;
   }
 }

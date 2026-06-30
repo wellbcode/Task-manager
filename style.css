@@ -167,7 +167,6 @@ button {
  
 .usuario-header h4{
   font-family: Arial, Helvetica, sans-serif;
-  /* color: #0e46c0; */
   font-weight: 800;
   color: #fff;
   text-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -181,7 +180,6 @@ button {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* sombra para contraste */
   text-align: center;
   margin-top: 15px;
-  /*animation: pulse 2s infinite;  animação suave */
 }
 
 .form-section {
@@ -189,6 +187,12 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
 }
+
+#formularioLoginCadastro {
+  justify-content:center;
+  display: none;
+}
+
 
 /* Limita o tamanho do container do cropper */
 #cropContainerCadastro,
@@ -253,11 +257,11 @@ button {
   transition: transform 0.4s ease;
 }
 
-/* animação da login e cadastro */
+/* animação de login e cadastro */
 #loginConteudo,
 #cadastroConteudo {
   overflow: hidden;
-  max-height: 500px;
+  max-height: 750px;
   transition: max-height 0.8s ease;
 }
 
@@ -300,16 +304,6 @@ button {
 .card-body h5 {
   margin-bottom: 15px;
 }
-/* .hidden {
-  max-height: 0 !important;
-  overflow: hidden;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-} */
-
-/* .btn-toggle-form {
- margin-left: auto;
-} */
 
 .botoes{
   cursor: pointer;
@@ -352,12 +346,6 @@ button {
   transform: scale(1.05);
   box-shadow: 0 6px 12px rgba(0,0,0,0.3);
 }
-
-/* .filtro-btn.active {
-  color: #fff !important;
-  background-color: #0d6efd !important;  azul do Bootstrap 
-  border-color: #0d6efd !important;
-} */
 
 /*Botões de Entrar ou Cadastrar e Sair*/
 .btn-outline-light{
@@ -499,7 +487,7 @@ button {
  
 .botoes-container {
   display: flex;
- /* flex-wrap: wrap;  Permite quebrar se necessÃ¡rio */
+ /* flex-wrap: wrap;  Permite quebrar se necessário */
   gap: 8px;
   justify-content: center;
 }
@@ -521,25 +509,14 @@ button {
 }
  
 /* deixa o botão exportar excel largo
-.botoes-container button { */
-  /*flex: 1 1 auto;  Ajusta proporcionalmente */
-  /* min-width: 90px; DiminuÃ­mos o tamanho mÃ­nimo */
-  /*padding: 8px 10px;  Menos espaÃ§o interno */
-  /*font-size: 13px;  Fonte menor */
-  /*border-radius: 6px;
-  cursor: pointer;
-}*/
- 
-/* deixa o botÃ£o exportar excel largo
-.botoes-container button {
-  flex: 1 1 auto;
-  min-width: 90px;
-  padding: 8px 10px;
-  font-size: 13px;
+.botoes-container button { 
+  flex: 1 1 auto;  Ajusta proporcionalmente 
+  min-width: 90px; DiminuÃ­mos o tamanho mÃ­nimo 
+  padding: 8px 10px;  Menos espaÃ§o interno 
+  font-size: 13px;  Fonte menor 
   border-radius: 6px;
   cursor: pointer;
 }*/
- 
 
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.9); }
@@ -564,12 +541,12 @@ button {
   padding: 10px;
 }
  
-/* InformaÃ§Ãµes da tarefa */
+/* Informações da tarefa */
 .tarefa-info {
   flex: 1;
 }
  
-/* ContÃªiner dos botÃµes */
+/* Container dos botões */
 .tarefa-acoes {
   display: flex;
   gap: 6px;
@@ -665,7 +642,6 @@ button {
   }
 }
 
- 
 /* Ajuste para telas muito pequenas */
 @media (max-width: 400px) {
   #listaTarefas .list-group-item {

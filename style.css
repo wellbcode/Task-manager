@@ -3,7 +3,6 @@
 }
 
 html, body {
-  overscroll-behavior: none;
   overflow-x: hidden;
 }
 
@@ -80,6 +79,7 @@ input.form-control {
   background-color: #e0e0e0;
   border-radius: 6px;
 }
+
 .progress-bar {
   width: 0%;
   transition: width 0.3s ease;
@@ -495,6 +495,7 @@ button {
  /* flex-wrap: wrap;  Permite quebrar se necessário */
   gap: 8px;
   justify-content: center;
+  padding: 10px;
 }
 
 .foto-preview {
@@ -687,6 +688,10 @@ button {
     margin: 10px auto;
   }
 }
+ .botoes-container button {
+    font-size: 12px; /* reduz leve para caber */
+    padding: 6px 10px;
+  }
 
 /* Ajuste para celulares */
 @media (max-width: 480px) {

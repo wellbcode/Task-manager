@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  overscroll-behavior: none;
+  overflow-x: hidden;
+}
+
 @keyframes changeBackgroundImage {
   0% {
     background-image: url('https://picsum.photos/id/1015/1500/1000'), url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&//fit=crop&w=1350&q=80');

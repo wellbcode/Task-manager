@@ -283,6 +283,7 @@ function converterParaBase64(file, callback) {
 
 let cropper;
 
+
 function configurarCropper(inputId, imageId, containerId, buttonId) {
   const inputFile = document.getElementById(inputId);
   const imagePreview = document.getElementById(imageId);

@@ -360,8 +360,8 @@ button {
 }
 
 /*Botão Atualizar perfil*/
-  .btn-outline-warning{
- background-color: rgba(255, 238, 0, 0.891) !important; 
+.btn-outline-warning{
+  background-color: rgba(255, 238, 0, 0.891) !important; 
   border-color: #333 !important;
   color: #333 !important;
 }
@@ -642,31 +642,7 @@ button {
   }
 }
 
-/* Ajuste para telas muito pequenas */
-@media (max-width: 400px) {
-  #listaTarefas .list-group-item {
-    flex-direction: column;
-    align-items: center;
-  }
-}
- 
-/* Ajuste para telas muito pequenas */
-@media (max-width: 400px) {
-  .tarefa {
-    flex-direction: column;
-    align-items: center;
-  }
-}
 
-/* Para telas muito pequenas */
-@media (max-width: 400px) {
-  .botoes-container {
-  flex-direction: column; /* Empilha se ficar muito apertado */
-   align-items: center;
-  }
-}
- 
-/* Ajuste para tablets */
 @media (max-width: 768px) {
   #mensagemUsuario {
     font-size: 1.5rem;
@@ -675,9 +651,20 @@ button {
   }
 }
 
-/* Ajuste para celulares */
-@media (max-width: 480px) {
-  #mensagemUsuario {
+@media (max-width: 400px) {
+  #listaTarefas .list-group-item {
+    flex-direction: column;
+    align-items: center;
+  }
+   .botoes-container {
+  flex-direction: column; /* Empilha se ficar muito apertado */
+   align-items: center;
+  }
+    .tarefa {
+    flex-direction: column;
+    align-items: center;
+  }
+    #mensagemUsuario {
     font-size: 1.2rem;
     padding: 0 15px;
     line-height: 1.3;

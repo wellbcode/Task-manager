@@ -28,7 +28,7 @@
     </button>
   
     <!-- Formulário de login e cadastro -->
-    <div id="formularioLoginCadastro">
+    <div id="formularioLoginCadastro" class="row justify-content-center" style="display: none;">
       <div class="col-md-6">
         <div class="card bg-dark text-white border-light shadow-lg">
           <div class="card-body">
@@ -37,8 +37,9 @@
             <div class="form-section mb-4 p-3 border rounded">
               <h5 class="mb-3 form-title">
                 Login
-                <button type="button" id="toggleBtnLogin" class="btn-seta btn-toggle-form" aria-label="Expandir ou recolher cadastro">
-                  <i class="bi bi-arrow-clockwise" id="iconToggleLogin"></i>
+                <button type="button" id="toggleBtnLogin" class="btn-seta btn-toggle-form">
+                  <!-- <i class="bi bi-arrow-clockwise" id="iconToggle"></i> -->
+                  🔽
                 </button>
               </h5>
             <div id="loginConteudo">
@@ -48,7 +49,7 @@
                 <label for="loginPin" class="form-label">PIN</label>
                 <div class="input-group">
                   <input type="password" id="loginPin" class="form-control" placeholder="Digite seu PIN">
-                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('loginPin', this)" aria-label="Alternar visibilidade do ícone de ver/esconder senha" >
+                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('loginPin', this)">
                     <i class="bi bi-lock-fill"></i>
                   </button>
                 </div>
@@ -61,8 +62,9 @@
             <div class="form-section p-3 border rounded">
               <h5 class="mb-3 form-title">
                 Cadastro
-                <button type="button" id="toggleBtnCadastro" class="btn-seta btn-toggle-form" aria-label="Expandir ou recolher cadastro">
-                  <i class="bi bi-arrow-clockwise" id="iconToggleCadastro"></i>
+                <button type="button" id="toggleBtnCadastro" class="btn-seta btn-toggle-form">
+                  <!-- <i class="bi bi-arrow-clockwise" id="iconToggle"></i> -->
+                  🔽
                 </button>
               </h5>
             <div id="cadastroConteudo"> 
@@ -73,7 +75,7 @@
                 <label for="cadastroPin" class="form-label">PIN</label>
                 <div class="input-group">
                   <input type="password" id="cadastroPin" class="form-control" placeholder="Crie um PIN">
-                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('cadastroPin', this)" aria-label="Botão cadastro">
+                  <button class="btn btn-outline-secondary" type="button" onclick="alternarVisibilidadePIN('cadastroPin', this)">
                     <i class="bi bi-lock-fill"></i>
                   </button>
                       <!-- Barra de força -->
@@ -97,7 +99,7 @@
                   <option value="outro">Outro</option>
                 </select>
               </div>
-              
+  
               <input type="file" id="cadastroFoto" class="form-control mb-3" accept="image/*">
   
               <!-- Cropper -->
@@ -115,6 +117,7 @@
     </div>
   </div>
   <!-- Área de login/cadastro aqui em cima -->
+   
   <div id="conteudoPrincipal"></div>
   
   <!-- Formulário de atualizar -->
@@ -191,7 +194,8 @@
       <h5 class="d-flex justify-content-between align-items-center">
         Adicionar Nova Tarefa
         <button type="button" id="toggleBtnNovaTarefa" class="btn-seta btn-toggle-form">
-          <i class="bi bi-arrow-clockwise" id="iconToggleNovaTarefa"></i>
+          <!-- <i class="bi bi-arrow-clockwise" id="iconToggle"></i> -->
+          🔽
         </button>
       </h5>
         <form id="formTarefa">
@@ -245,7 +249,8 @@
       <h5 class="card-title d-flex justify-content-between align-items-center">
         Minhas Tarefas
         <button type="button" id="toggleBtn" class="btn-seta">
-          <i class="bi bi-arrow-clockwise" id="iconToggle"></i>
+          <!-- <i class="bi bi-arrow-clockwise" id="iconToggle"></i> -->
+          🔽
         </button>
       </h5>
 

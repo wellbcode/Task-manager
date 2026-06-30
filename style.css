@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 @keyframes changeBackgroundImage {
   0% {
     background-image: url('https://picsum.photos/id/1015/1500/1000'), url('https://images.unsplash.com/photo-1572276596237-5db2c3e16c5d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&//fit=crop&w=1350&q=80');
@@ -53,10 +57,15 @@ body {
 }
  
 .card {
-  margin: 10px;
+  width: 100%;
+  max-width: 500px;   /* controla o tamanho máximo */
+  border-radius: 10px;
+  margin: 10px auto;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.74);
   background-image: linear-gradient(to left, rgb(17, 81, 141), #b4a9a9);
 }
+
+
 
 input.form-control {
   border-left: 4px solid green;
@@ -188,12 +197,6 @@ button {
   border-radius: 8px;
 }
 
-#formularioLoginCadastro {
-  justify-content:center;
-  display: none;
-}
-
-
 /* Limita o tamanho do container do cropper */
 #cropContainerCadastro,
 #cropContainerAtualizar {
@@ -221,23 +224,20 @@ button {
 
 /* expandir abre e fecha */
 .btn-seta {
-  background: #7ad655;
-  border: none;
-  color: white;
+  /* background: #7ad655;
   width: 36px;
   height: 36px;
-  border-radius: 50%;
   margin-left: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   transition: 0.3s;
-  box-shadow: 0 4px 10px rgba(0,0,0,.2);
-}
-
-.btn-seta:hover {
-  background: #0d6efd; 
+  box-shadow: 0 4px 10px rgba(0,0,0,.2); */
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 /* animação da lista de tarefas botão espandir */
@@ -251,17 +251,17 @@ button {
   max-height: 0;
 }
 
-/* rotação do ícone */
+/* rotação do ícone 
 .rotacionar {
   transform: rotate(180deg);
   transition: transform 0.4s ease;
-}
+}*/
 
-/* animação de login e cadastro */
+/* animação da login e cadastro */
 #loginConteudo,
 #cadastroConteudo {
   overflow: hidden;
-  max-height: 750px;
+  max-height: 800px;
   transition: max-height 0.8s ease;
 }
 
@@ -360,8 +360,8 @@ button {
 }
 
 /*Botão Atualizar perfil*/
-.btn-outline-warning{
-  background-color: rgba(255, 238, 0, 0.891) !important; 
+  .btn-outline-warning{
+ background-color: rgba(255, 238, 0, 0.891) !important; 
   border-color: #333 !important;
   color: #333 !important;
 }
@@ -642,7 +642,32 @@ button {
   }
 }
 
+ 
+/* Ajuste para telas muito pequenas */
+@media (max-width: 400px) {
+  #listaTarefas .list-group-item {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+ 
+/* Ajuste para telas muito pequenas */
+@media (max-width: 400px) {
+  .tarefa {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
+/* Para telas muito pequenas */
+@media (max-width: 400px) {
+  .botoes-container {
+  flex-direction: column; /* Empilha se ficar muito apertado */
+   align-items: center;
+  }
+}
+ 
+/* Ajuste para tablets */
 @media (max-width: 768px) {
   #mensagemUsuario {
     font-size: 1.5rem;
@@ -651,20 +676,16 @@ button {
   }
 }
 
-@media (max-width: 400px) {
-  #listaTarefas .list-group-item {
-    flex-direction: column;
-    align-items: center;
+@media (max-width: 600px) {
+  .card {
+    max-width: 80%;
+    margin: 10px auto;
   }
-   .botoes-container {
-  flex-direction: column; /* Empilha se ficar muito apertado */
-   align-items: center;
-  }
-    .tarefa {
-    flex-direction: column;
-    align-items: center;
-  }
-    #mensagemUsuario {
+}
+
+/* Ajuste para celulares */
+@media (max-width: 480px) {
+  #mensagemUsuario {
     font-size: 1.2rem;
     padding: 0 15px;
     line-height: 1.3;

@@ -76,7 +76,6 @@ function logoutUsuario() {
   });
 }
 
-
 // Função para cadastrar usuário
 function cadastrarUsuario() {
   const nomeCompleto = document.getElementById("cadastroNome").value.trim();
@@ -283,6 +282,38 @@ function converterParaBase64(file, callback) {
 
 let cropper;
 
+window.addEventListener("resize", () => {
+  if (!cropper) return;
+
+  cropper.destroy();
+
+  cropper = new Cropper(document.getElementById("imagePreviewCadastro"), {
+    aspectRatio: 1,
+    viewMode: 1,
+    autoCropArea: 0.5
+  });
+});
+
+/* segunda opção
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+    if (!cropper) return;
+
+    cropper.destroy();
+
+    cropper = new Cropper(document.getElementById("imagePreviewCadastro"), {
+      aspectRatio: 1,
+      viewMode: 1,
+      autoCropArea: 0.5
+    });
+  }, 200);
+});
+
+*/
 
 function configurarCropper(inputId, imageId, containerId, buttonId) {
   const inputFile = document.getElementById(inputId);

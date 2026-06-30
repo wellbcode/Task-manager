@@ -43,6 +43,9 @@ gerenciador_tarefas/
 # Clone o repositório
 git clone https://github.com/wellbcode/Task-manager.git
 
+# acesso o repositório
+https://wellbcode.github.io/Task-manager/
+
 # Acesse a pasta
 cd Task-manager
 

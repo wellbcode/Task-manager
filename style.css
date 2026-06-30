@@ -69,17 +69,6 @@ body {
   background-image: linear-gradient(to left, rgb(17, 81, 141), #b4a9a9);
 }
 
-input[type="date"]::-webkit-datetime-edit {
-  color: #000;
-}
-
-input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-  color: #000;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-  filter: invert(1); /* se fundo escuro */
-}
 
 input.form-control {
   border-left: 4px solid green;

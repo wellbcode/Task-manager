@@ -292,6 +292,20 @@
     }
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    flatpickr("#mesAno", {
+      dateFormat: "m/Y",   // mês/ano
+      plugins: [
+        new monthSelectPlugin({
+          shorthand: true, // Jan, Feb...
+          dateFormat: "m/Y",
+          altFormat: "F Y"
+        })
+      ]
+    });
+  </script>
+
 <!-- <script>
 document.addEventListener('DOMContentLoaded', () => {
   const installBtn = document.getElementById('installAppBtn');
